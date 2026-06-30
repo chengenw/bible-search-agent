@@ -154,8 +154,6 @@ bible-search-agent/
 git clone <this-repository>
 cd <this-repository>
 uv sync
-uv pip install torch --index-url https://download.pytorch.org/whl/cpu
-uv pip install sentence-transformers
 source .venv/bin/activate
 ```
 

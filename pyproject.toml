@@ -9,4 +9,18 @@ dependencies = [
     "litellm",
     "python-dotenv",
     "google-cloud-aiplatform>=1.152.0",
+    "botocore>=1.43.37",
+    "torch",
+    "sentence-transformers",
 ]
+
+# Pull torch from PyTorch's CPU-only wheel index instead of the default PyPI
+# build (which bundles CUDA). `explicit = true` means this index is used only
+# for packages that reference it below — everything else resolves from PyPI.
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cpu" }
