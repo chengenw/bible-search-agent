@@ -113,7 +113,7 @@ def retrieve_verses(
             "reference": meta["reference"],
             "testament": meta.get("testament", ""),
             "text":      doc,
-            "score":     round(1 - dist, 4),
+            "score":     round(1 - dist, 4),   # cosine distance → similarity
         }
         for doc, meta, dist in zip(
             results["documents"][0],

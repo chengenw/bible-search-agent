@@ -1,29 +1,26 @@
-"""
-config.py — Constants, version map, Bible structure metadata
-"""
+"""Constants: model config, storage paths, the Bolls API, and Bible book sets."""
 
 import os
 from dotenv import load_dotenv
 
 load_dotenv()
 
-# ─────────────────────────────────────────────
-# LLM / agent config
-# ─────────────────────────────────────────────
-MODEL               = os.getenv("MODEL", "gemini-2.5-pro")
-TOP_K               = 25   # wider net per query; LLM picks ≤10 to show user
+# rstrip(",") guards against a comma-separated model list being pasted into MODEL.
+MODEL = os.getenv("MODEL", "gemini-2.5-pro").strip().rstrip(",")
+TOP_K = 25   # retrieve a wide pool per query; the LLM shows the user ≤10
 MAX_RETRIEVAL_CALLS = 4
 
-# ─────────────────────────────────────────────
-# Storage paths
-# ─────────────────────────────────────────────
-DB_BASE    = "./data/bible_db"
+# Reasoning depth for models that support it ("low"/"medium"/"high"); unset = default.
+REASONING_EFFORT = os.getenv("REASONING_EFFORT", "").strip().lower() or None
+
+# Cap output length. Some providers otherwise default max_tokens to the model's
+# full output window, which can overflow the context limit and 400.
+MAX_COMPLETION_TOKENS = int(os.getenv("MAX_COMPLETION_TOKENS") or 8192)
+
+DB_BASE = "./data/bible_db"
 CACHE_BASE = "./data/bible_cache"
 
-# ─────────────────────────────────────────────
-# Bolls API
-# ─────────────────────────────────────────────
-BOLLS_BOOKS_URL  = "https://bolls.life/get-books/{translation}/"
+BOLLS_BOOKS_URL = "https://bolls.life/get-books/{translation}/"
 BOLLS_VERSES_URL = "https://bolls.life/get-text/{translation}/{book}/{chapter}/"
 
 VERSIONS = {
@@ -42,9 +39,6 @@ VERSIONS = {
     "AMP":  "AMP",
 }
 
-# ─────────────────────────────────────────────
-# Bible structure
-# ─────────────────────────────────────────────
 OLD_TESTAMENT_BOOKS = {
     "Genesis", "Exodus", "Leviticus", "Numbers", "Deuteronomy",
     "Joshua", "Judges", "Ruth", "1 Samuel", "2 Samuel",

@@ -14,3 +14,5 @@ bible_db/
 data/
 uv.lock
 .python-version
+results/
+data.csv

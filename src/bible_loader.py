@@ -52,6 +52,7 @@ def _download_from_bolls(version_key: str) -> list[dict]:
                     verse_num = v.get("verse", 0)
                     if text:
                         verses.append({
+                            # zero-padded book/chapter/verse → a stable, sortable id
                             "id":        f"{book_id:02d}{chapter:03d}{verse_num:03d}",
                             "text":      text,
                             "book":      book_name,
