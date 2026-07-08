@@ -46,11 +46,13 @@ priest forever after it — distinct from the Levitical priesthood.
 - **Measuring hallucination is subtle.** My first faithfulness check reported
   **42%** — but inspection showed almost all of it was the model reciting real
   verses in *NIV/ESV* wording, scored against *KJV*. Checking each quote against
-  **every cached translation** (KJV/ESV/NASB/NIV/NLT) dropped it to ~2–5%, and
-  that residual is paraphrase or a verse described rather than quoted — reference
-  validity is 100%, i.e. these models never invent a verse; they have the Bible
-  memorized. A metric that conflates "different translation" with "made up" is
-  worse than no metric — a lesson that generalizes to any grounded-generation eval.
+  **every cached translation** (KJV/ESV/NASB/NIV/NLT) brought it down to **~2%
+  for capable models** — and that residual is paraphrase or a verse *described*
+  rather than quoted; reference validity stays 100%, so they never invent a verse
+  (a small model like gpt-oss-20b scores worse only because it paraphrases
+  loosely, not because it fabricates). A metric that conflates "different
+  translation" with "made up" is worse than no metric — a lesson that generalizes
+  to any grounded-generation eval.
 - **Model output is untrusted input.** Benchmarking many models surfaced real
   misbehaviour — one emitted 24 *parallel* tool calls in a single turn and
   ballooned a request to 537k tokens. The agent loop now defends against it
@@ -145,7 +147,9 @@ Example leaderboard (KJV, 50 questions):
 |---|---|---|---|---|
 | deepseek-v4-flash | 94% | 94% | 98% | 77% |
 | minimax-m3 | 94% | 96% | 95% | 66% |
+| mimo-v2.5-pro | 87% | 96% | 98% | 49% |
 | qwen3-235b-a22b-2507 | 79% | 91% | 98% | 53% |
+| gpt-oss-20b | 40% | 81% | 22% | 30% | 
 
 **Results are cached and runs resume.** Answers are stored per
 (translation, model) and re-scored from their raw text on *every* run — so

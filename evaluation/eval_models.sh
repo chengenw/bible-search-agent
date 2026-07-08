@@ -21,10 +21,11 @@ PY=.venv/bin/python
 [ -x "$PY" ] || PY=python
 
 MODELS="${MODELS:-
-openrouter/deepseek/deepseek-v4-flash
 openrouter/minimax/minimax-m3
+openrouter/deepseek/deepseek-v4-flash
+openrouter/xiaomi/mimo-v2.5-pro
 openrouter/qwen/qwen3-235b-a22b-2507
-openai/gpt-oss-20b
+openrouter/openai/gpt-oss-20b
 }"
 # dead on OpenRouter (400 on every call), kept out of the default roster:
 #   openrouter/qwen/qwen3.7-plus

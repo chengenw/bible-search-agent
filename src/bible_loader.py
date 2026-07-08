@@ -38,6 +38,9 @@ def _download_from_bolls(version_key: str) -> list[dict]:
         book_name = book["name"]
         num_chaps = book["chapters"]
 
+        if book_id > 66:      # skip Apocrypha; Bolls numbers the 66 canonical books 1–66
+            continue
+
         for chapter in range(1, num_chaps + 1):
             try:
                 r = requests.get(
@@ -48,7 +51,11 @@ def _download_from_bolls(version_key: str) -> list[dict]:
                 )
                 r.raise_for_status()
                 for v in r.json():
-                    text      = re.sub(r"<[^>]+>", "", v.get("text", "")).strip()
+                    # Some Bolls editions tag Strong's numbers as <S>1234</S>;
+                    # drop those (number and all), then strip any other markup.
+                    text      = re.sub(r"<S>\d+</S>", "", v.get("text", ""))
+                    text      = re.sub(r"<[^>]+>", "", text)
+                    text      = re.sub(r"\s+", " ", text).strip()
                     verse_num = v.get("verse", 0)
                     if text:
                         verses.append({
