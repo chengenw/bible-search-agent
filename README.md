@@ -141,15 +141,19 @@ python -m evaluation.run_eval --no-rag             # memory-only baseline
 python -m evaluation.leaderboard                   # combined Markdown leaderboard
 ```
 
-Example leaderboard (KJV, 50 questions):
+Example leaderboard:
 
-| Model | Answer hit | No-RAG | No-RAG faithful | Retrieval@10 |
-|---|---|---|---|---|
-| deepseek-v4-flash | 94% | 94% | 98% | 77% |
-| minimax-m3 | 94% | 96% | 95% | 66% |
-| mimo-v2.5-pro | 87% | 96% | 98% | 49% |
-| qwen3-235b-a22b-2507 | 79% | 91% | 98% | 53% |
-| gpt-oss-20b | 40% | 81% | 22% | 30% | 
+**Answer hit** = end-to-end: verses the agent shows the user contain the gold (all shown verses scored, no cutoff).  **Retrieval@k** = a required verse is within top-k of the agent's search.
+**No-RAG** = same questions answered from the model's own knowledge (no retrieval); the Answer hit − No-RAG gap is the measured RAG benefit.
+**No-RAG faithful** = fraction of the no-RAG model's own citations whose quoted text matches the real verse (RAG is verbatim, so ~100%); the shortfall is its hallucination rate.
+
+| Model | Ver | Runs | n | Answer hit | No-RAG | No-RAG faithful | Retrieval@3 | Retrieval@10 | Refusal |
+|---|---|---|---|---|---|---|---|---|---|
+| minimax-m3 | KJV | 3 | 50 | 91% | 96% | 97% | 52% | 66% | 100% |
+| mimo-v2.5-pro | KJV | 3 | 50 | 91% | 95% | 98% | 41% | 65% | 100% |
+| deepseek-v4-flash | KJV | 3 | 50 | 90% | 92% | 97% | 48% | 65% | 100% |
+| qwen3-235b-a22b-2507 | KJV | 3 | 50 | 80% | 91% | 98% | 37% | 53% | 100% |
+| gpt-oss-20b | KJV | 3 | 50 | 51% | 82% | 21% | 26% | 41% | 100% |
 
 **Results are cached and runs resume.** Answers are stored per
 (translation, model) and re-scored from their raw text on *every* run — so
