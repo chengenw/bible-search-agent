@@ -13,7 +13,7 @@ that benchmarks multiple models and asks the question many RAG demos skip:
 
 **Finding:** on a *memorized* public text like the Bible, a grounded RAG agent
 does **not** out-score a strong model's own recall — retrieval is capped by
-search quality (~77% top-10), below the model's memory (~94%). What retrieval
+search quality (~66% top-10), below the model's memory (~91%). What retrieval
 adds here is **grounding**: every citation is verbatim from the source, whereas
 the same models answering from memory drift between translations and occasionally
 misquote. The harness exists to measure that trade-off — where retrieval helps
