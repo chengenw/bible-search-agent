@@ -143,10 +143,6 @@ python -m evaluation.leaderboard                   # combined Markdown leaderboa
 
 Example leaderboard:
 
-**Answer hit** = end-to-end: verses the agent shows the user contain the gold (all shown verses scored, no cutoff).  **Retrieval@k** = a required verse is within top-k of the agent's search.
-**No-RAG** = same questions answered from the model's own knowledge (no retrieval); the Answer hit − No-RAG gap is the measured RAG benefit.
-**No-RAG faithful** = fraction of the no-RAG model's own citations whose quoted text matches the real verse (RAG is verbatim, so ~100%); the shortfall is its hallucination rate.
-
 | Model | Ver | Runs | n | Answer hit | No-RAG | No-RAG faithful | Retrieval@3 | Retrieval@10 | Refusal |
 |---|---|---|---|---|---|---|---|---|---|
 | minimax-m3 | KJV | 3 | 50 | 91% | 96% | 97% | 52% | 66% | 100% |
