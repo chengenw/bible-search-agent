@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Ask a question about the Bible and explore the verses behind the answer.">
+    <title>Bible Search</title>
+    <link rel="stylesheet" href="/search.css">
+    <script src="/search.js" defer></script>
+  </head>
+  <body>
+    <header class="masthead">
+      <div class="container masthead-inner">
+        <span>Bible Search</span>
+      </div>
+    </header>
+    <main class="container">
+      <h1>Search the Bible by meaning</h1>
+      <p class="intro">Ask in your own words and explore the verses behind the answer.</p>
+
+      <form id="search-form">
+        <label for="question">Your question</label>
+        <textarea id="question" name="question" rows="3" maxlength="1000" required
+          placeholder="Where does the Bible talk about forgiveness?"></textarea>
+        <div class="form-actions">
+          <div class="translation-picker">
+            <label for="version">Bible translation</label>
+            <select id="version" name="version">
+              <!-- translation options -->
+            </select>
+          </div>
+          <button type="submit" id="submit">Search Scripture</button>
+        </div>
+      </form>
+
+      <div class="examples" aria-label="Example questions">
+        <span>Try a question</span>
+        <button type="button" class="example">Who is Melchizedek?</button>
+        <button type="button" class="example">What does the Bible say about loving enemies?</button>
+      </div>
+
+      <p id="status" role="status"></p>
+      <section id="results" aria-label="Search results" hidden>
+        <article class="answer-card">
+          <h2>Answer</h2>
+          <div id="answer"></div>
+        </article>
+        <aside class="sources-card">
+          <h2>Retrieved verses</h2>
+          <p class="source-note">Up to three verses per model-generated query, ranked by vector similarity alone. Duplicate verses appear once.</p>
+          <ul id="sources" class="sources"></ul>
+        </aside>
+      </section>
+    </main>
+  </body>
+</html>

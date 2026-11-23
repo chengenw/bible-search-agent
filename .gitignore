@@ -7,7 +7,8 @@ wheels/
 *.egg-info
 
 # Virtual environments
-.venv
+.venv/
+.claude/
 .env
 bible_cache/
 bible_db/
@@ -16,3 +17,5 @@ uv.lock
 .python-version
 results/
 data.csv
+tests/
+CHANGES.md

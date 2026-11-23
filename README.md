@@ -182,6 +182,12 @@ python main.py                    # KJV (default); first run downloads + indexes
 python main.py --version ESV      # any of KJV·ASV·WEB·YLT·NASB·NIV·ESV·NKJV·NLT·MSG·RSV·NET·AMP
 ```
 
+For the browser app, run `uv run python web.py` and open
+[http://127.0.0.1:8000](http://127.0.0.1:8000). Select any supported Bible
+translation (KJV is the default). The app uses the same `.env` and indexes as
+the CLI. The first search in a translation may take a few minutes if the index
+needs to be built.
+
 The model must support tool calling (the agent forces a tool call on turn 1).
 Optional: `REASONING_EFFORT=low|medium|high`, `MAX_COMPLETION_TOKENS`.
 
@@ -196,4 +202,4 @@ Optional: `REASONING_EFFORT=low|medium|high`, `MAX_COMPLETION_TOKENS`.
 - **Pure semantic search, single verses, no keyword fallback** — by design;
   keyword/exact-phrase and passage context are well served by existing tools.
 - **Requires an LLM API key** (a local Ollama model works via litellm but with
-  lower quality). CLI only.
+  lower quality).
